@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Actions\Languages;
 use App\Http\Resources\LanguageResource;
 use App\Models\Language;
 
-class GetAllLanuagesAction
+class GetAllLanguagesAction
 {
     /**
      * return all languages
