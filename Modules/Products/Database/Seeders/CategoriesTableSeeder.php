@@ -4,8 +4,9 @@ namespace Modules\Products\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Products\Entities\Category;
 
-class ProductsDatabaseSeeder extends Seeder
+class CategoriesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,6 @@ class ProductsDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
-        $this->call(CategoriesTableSeeder::class);
+        Category::factory(10)->create();
     }
 }
