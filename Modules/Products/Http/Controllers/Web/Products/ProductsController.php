@@ -5,6 +5,10 @@ namespace Modules\Products\Http\Controllers\Web\Products;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Products\Http\Controllers\Actions\Categories\GetAllCategoriesAction;
+use Modules\Products\Http\Controllers\Actions\Products\SearchProductsAction;
+use Modules\Products\Http\Controllers\Actions\Products\SearchProductsQueryAction;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductsController extends Controller
 {
@@ -12,9 +16,19 @@ class ProductsController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('products::index');
+        if ($request->ajax()) {
+            // Search the products
+            $action = new SearchProductsAction;
+            $products = $action->execute($request->input('categories_ids'));
+            return DataTables::of($products)
+                ->make(true);
+        } else {
+            return view('products::products.index')->with([
+                'categories' => (new GetAllCategoriesAction)->execute()
+            ]);
+        }
     }
 
     /**
@@ -32,47 +46,6 @@ class ProductsController extends Controller
      * @return Renderable
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('products::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('products::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
     {
         //
     }

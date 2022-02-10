@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Products\Http\Controllers\Web\Products\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::group(
     ],
     function () {
         Route::prefix('products')->group(function () {
-            Route::get('/', 'ProductsController@index');
+            Route::match(['GET', 'POST'], '/', [ProductsController::class, 'index'])->name('products.index');
         });
     }
 );
