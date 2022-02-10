@@ -41,7 +41,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-dark bg-dark">
             @if (App::getLocale() == 'en')
                 <a class="navbar-brand" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
                     {{ __('main.arabic') }}
