@@ -23,4 +23,11 @@ class Category extends Model
     {
         return \Modules\Products\Database\factories\CategoryFactory::new();
     }
+
+    /**
+     * return all products of the category
+     */
+    public function products(){
+        return $this->hasMany(Product::class, 'cat_id', 'id');
+    }
 }
