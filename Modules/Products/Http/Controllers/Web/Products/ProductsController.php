@@ -2,6 +2,7 @@
 
 namespace Modules\Products\Http\Controllers\Web\Products;
 
+use App\Http\Controllers\Actions\Languages\GetAllLanguagesAction;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -18,6 +19,7 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
+        $languages = (new GetAllLanguagesAction)->execute();
         if ($request->ajax()) {
             // Search the products
             $action = new SearchProductsAction;
@@ -26,18 +28,10 @@ class ProductsController extends Controller
                 ->make(true);
         } else {
             return view('products::products.index')->with([
-                'categories' => (new GetAllCategoriesAction)->execute()
+                'categories' => (new GetAllCategoriesAction)->execute(),
+                'languages' => $languages
             ]);
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('products::create');
     }
 
     /**
@@ -47,6 +41,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 }

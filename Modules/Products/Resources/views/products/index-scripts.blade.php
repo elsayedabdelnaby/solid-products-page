@@ -37,6 +37,17 @@
 
         $('.select-categories-multiple').select2();
 
+        $('.repeater').repeater({
+            show: function() {
+                $(this).slideDown();
+            },
+            hide: function(deleteElement) {
+                $(this).slideUp(deleteElement);
+            },
+            ready: function(setIndexes) {}
+        });
+
+
     });
 
     $('#m_search').on('click', function(e) {
@@ -44,5 +55,28 @@
         var query = $('#search-products-datatable-form').serialize();
         var table = $('#products-data-table').DataTable();
         table.ajax.url('{{ route('products.index') }}' + '?' + query).load();
+    });
+
+    $("#create-product-form").validate({
+        rules: {
+            price: "required",
+            cat_id: "required"
+        },
+        messages: {
+            price: '{{ __('products::main.price_is_required') }}'
+        },
+        submitHandler: function(form) {
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: $(form).serialize(),
+                success: function(response) {
+                    $('#answers').html(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
     });
 </script>

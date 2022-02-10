@@ -23,6 +23,7 @@ Route::group(
     function () {
         Route::prefix('products')->group(function () {
             Route::match(['GET', 'POST'], '/', [ProductsController::class, 'index'])->name('products.index');
+            Route::post('/store', [ProductsController::class, 'store'])->name('products.store');
         });
     }
 );

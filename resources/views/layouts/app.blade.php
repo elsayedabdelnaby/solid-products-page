@@ -28,24 +28,29 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <script src="{{ asset('js/jquery.repeater.min.js') }}"></script>
     @stack('head-style')
     @stack('head-scripts')
+    <style>
+        .error {
+            color: #f00;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-light bg-light">
-            @if(App::getLocale() == 'en')
-            <a class="navbar-brand" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
-                {{ __('main.arabic') }}
-            </a>
+            @if (App::getLocale() == 'en')
+                <a class="navbar-brand" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                    {{ __('main.arabic') }}
+                </a>
             @else
-            <a class="navbar-brand" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
-                {{ __('main.english') }}
-            </a>
+                <a class="navbar-brand" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                    {{ __('main.english') }}
+                </a>
             @endif
-          </nav>
+        </nav>
         <main class="py-4">
             @yield('content')
         </main>
