@@ -20,4 +20,5 @@ return [
     'delete' => 'Delete',
     'add' => 'Add',
     'name' => 'Name',
+    'translations_must_contain_english_language' => 'Translations Must Contain English Lanugage',
 ];

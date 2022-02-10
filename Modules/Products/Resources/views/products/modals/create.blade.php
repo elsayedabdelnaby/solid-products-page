@@ -17,6 +17,7 @@
                         <div class="col-12" id="answers">
                         </div>
                         <div class="col-12" id="errors">
+
                         </div>
                     </div>
                     <div class="row">
@@ -38,25 +39,28 @@
                         </div>
                     </div>
                     <div data-repeater-list="translations">
-                        <div class="row align-items-end" data-repeater-item>
+                        <div class="row align-items-start" data-repeater-item>
                             <div class="col-4">
                                 <label for="language">{{ __('products::main.langauge') }} </label>
-                                <select class="form-control" name="langauge" required>
-                                    @foreach($languages as $language)
+                                <select class="form-control" name="language_id" required>
+                                    @foreach ($languages as $language)
                                         <option value="{{ $language->id }}"> {{ $language->code }} </option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-5">
                                 <label for="name"> {{ __('products::main.name') }} </label>
-                                <input type="text" name="name" placeholder="{{ __('products::main.name') }}" class="form-control" required/>
+                                <input type="text" name="name" placeholder="{{ __('products::main.name') }}"
+                                    class="form-control" required />
                             </div>
-                            <div class="col-3">
-                                <input data-repeater-delete type="button" value="{{ __('products::main.delete') }}" class="btn btn-danger"/>
+                            <div class="col-3 mt-4 py-2">
+                                <input data-repeater-delete type="button" value="{{ __('products::main.delete') }}"
+                                    class="btn btn-danger" />
                             </div>
                         </div>
                     </div>
-                    <input data-repeater-create type="button" value="{{ __('products::main.add') }}" class="btn btn-primary my-2"/>
+                    <input data-repeater-create type="button" value="{{ __('products::main.add') }}"
+                        class="btn btn-primary my-2" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"

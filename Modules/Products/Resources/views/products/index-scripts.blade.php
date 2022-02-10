@@ -60,10 +60,16 @@
     $("#create-product-form").validate({
         rules: {
             price: "required",
-            cat_id: "required"
+            cat_id: "required",
         },
         messages: {
             price: '{{ __('products::main.price_is_required') }}'
+        },
+        invalidHandler: function(form, validator) {
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                validator.errorList[0].element.focus();
+            }
         },
         submitHandler: function(form) {
             $.ajax({
@@ -73,8 +79,19 @@
                 success: function(response) {
                     $('#answers').html(response);
                 },
-                error: function(error) {
-                    console.log(error);
+                error: function(data) {
+                    let response = JSON.parse(data.responseText.toString());
+                    let errors = response['errors'];
+                    if (response.message) {
+                        errors = Object.entries(errors);
+                        errors.forEach(error => {
+                            $.notify(error[1][0], "error");
+                        });
+                    } else {
+                        errors.forEach(error => {
+                            $.notify(error.message, "error");
+                        });
+                    }
                 }
             });
         }
