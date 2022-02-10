@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Modules\Products\Http\Controllers\Web\Products\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,8 @@ Route::group(
         'namespace' => 'Web'
     ],
     function () {
-        Route::get('/', function () {
-            return view('welcome');
-        });
+        Route::get('/', [ProductsController::class, 'index']);
     }
 );
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
