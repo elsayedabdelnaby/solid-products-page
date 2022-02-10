@@ -1,7 +1,7 @@
 <script type="text/javascript">
     $(function() {
 
-        var table = $('#products-data-table').DataTable({
+        var productsDatatable = $('#products-data-table').DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
@@ -53,7 +53,7 @@
     $('#m_search').on('click', function(e) {
         e.preventDefault();
         var query = $('#search-products-datatable-form').serialize();
-        var table = $('#products-data-table').DataTable();
+        let table = $('#products-data-table').DataTable();
         table.ajax.url('{{ route('products.index') }}' + '?' + query).load();
     });
 
@@ -77,7 +77,15 @@
                 type: form.method,
                 data: $(form).serialize(),
                 success: function(response) {
-                    $('#answers').html(response);
+                    if(response.status){
+                        $.notify(response.message, "success");
+                        $('#createProductModal').modal('toggle');
+                        $('#create-product-form').trigger("reset");
+                        let table = $('#products-data-table').DataTable();
+                        table.ajax.reload();
+                    } else {
+                        $.notify(response.message, "error");
+                    }
                 },
                 error: function(data) {
                     let response = JSON.parse(data.responseText.toString());
