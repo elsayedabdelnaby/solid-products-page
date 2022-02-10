@@ -82,6 +82,17 @@ return [
 
     'locale' => 'en',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Default Locale Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application default locale determines the default locale that will be used.
+    */
+
+    'default_locale' => 'en',
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

@@ -17,5 +17,6 @@ class ProductsDatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
     }
 }
