@@ -7,4 +7,7 @@ return [
     'price' => 'Price',
     'created_at' => 'Created at',
     'products_datatable' => 'Products Datatable',
+    'filter_by_category' => 'Filter by Category',
+    'select_category' => 'Select Category',
+    'filter' => 'Filter'
 ];

@@ -1,5 +1,10 @@
 <div class="container">
-    <h1>{{ __('products::main.products_datatable') }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <h1>{{ __('products::main.products_datatable') }}</h1>
+        </div>
+    </div>
+    @include('products::products.index-filter')
     <table class="table table-bordered data-table" id="products-data-table">
         <thead>
             <tr>
