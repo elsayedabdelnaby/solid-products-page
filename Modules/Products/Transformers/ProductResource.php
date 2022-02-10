@@ -19,10 +19,12 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'default_name' => $this->default_name,
             'category_id' => $this->cat_id,
+            'category_name' => $this->category ? $this->category->name : null,
             'category' => $this->category ? new CategoryResource($this->category) : null,
+            'price' => $this->price,
             'translations' => ProductTranslationResource::collection($this->translations),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->toDateTimeString(),
+            'updated_at' => $this->updated_at->toDateTimeString(),
         ];
     }
 }

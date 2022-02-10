@@ -18,8 +18,8 @@ class ProductTranslationResource extends JsonResource
             'product_id' => $this->product_id,
             'language_id' => $this->language_id,
             'name' => $this->name,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'created_at' => $this->created_at->toDateTimeString(),
+            'updated_at' => $this->updated_at->toDateTimeString()
         ];
     }
 }
